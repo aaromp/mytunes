@@ -9,6 +9,10 @@ var SongQueue = Songs.extend({
 
   enqueue: function(song){
     this.push(song);
+  },
+
+  dequeue: function(){
+    this.shift();
   }
 
 });
