@@ -17,19 +17,21 @@
     <script src="views/PlayerView.js"></script>
     <script src="views/LibraryView.js"></script>
     <script src="views/LibraryEntryView.js"></script>
+    <script src="views/SongQueueView.js"></script>
+    <script src="views/SongQueueEntryView.js"></script>
     <script src="views/AppView.js"></script>
 
     <script>
       $(function(){
         // set up model objects
-        var library = new Songs(songData);
-        var app = new AppModel({library: library});
+        window.library = new Songs(songData);
+        window.app = new AppModel({library: window.library});
 
         // build a view for the top level of the whole app
-        var appView = new AppView({model: app});
+        window.appView = new AppView({model: window.app});
 
         // put the view onto the screen
-        $('body').append(appView.render());
+        $('body').append(window.appView.render());
       });
     </script>
   </body>
