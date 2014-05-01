@@ -5,6 +5,10 @@ var LibraryView = Backbone.View.extend({
 
   initialize: function() {
     this.render();
+
+    this.collection.on('ended', function(){ // listen for ended to increment play count
+      this.render();
+    }, this);
   },
 
   render: function(){

@@ -9,7 +9,6 @@ var SongQueue = Songs.extend({
     });
 
     this.on('ended', function(song) { // listens for when a song ends
-      console.log('songqueue is receiving ended')
       this.dequeue(song);
       if(this.length) { // if there are songs in the queue
         this.playFirst();
@@ -23,7 +22,6 @@ var SongQueue = Songs.extend({
 
   enqueue: function(song){
     this.add(song);
-    console.log('added', song)
   },
 
   dequeue: function(song){
