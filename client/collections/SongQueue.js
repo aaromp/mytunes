@@ -8,28 +8,15 @@ var SongQueue = Songs.extend({
       }
     });
 
-    this.on('ended', function(song) { // listens for when a song ends
-      this.dequeue(song);
-      if(this.length) { // if there are songs in the queue
+    this.on('remove', function() {
+      if(this.length === 1) {
         this.playFirst();
       }
     });
-
-    this.on('dequeue', function(song) {
-      this.dequeue(song);
-    });
-  },
-
-  enqueue: function(song){
-    this.add(song);
-  },
-
-  dequeue: function(song){
-    this.remove(song);
   },
 
   playFirst: function(){
-    this.at(0).play();
-  }
+    this.at(0).play(); // plays the first songModel in the queue
+  },
 
 });
