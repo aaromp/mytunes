@@ -3,12 +3,10 @@ var PlayerView = Backbone.View.extend({
 
   // HTML5 (native) audio tag is being used
   // see: https://developer.mozilla.org/en-US/docs/Web/Guide/HTML/Using_HTML5_audio_and_video
-  el: '<audio controls autoplay />',
+  el: '<audio class="player" controls autoplay />',
 
   initialize: function() {
-    console.log(this.model);
     this.$el.on('ended', function() {
-      console.log('ending', this.model);
       this.model.ended();
     }.bind(this));
   },
@@ -16,6 +14,15 @@ var PlayerView = Backbone.View.extend({
   setSong: function(song){
     this.model = song;
     this.render();
+  },
+
+  // receives stop invokation from AppView and pauses the player and sets
+  // current time to 0 (effectively stopping the track)
+  stop: function() {
+    this.$el.each(function(index, value){
+      value.pause();
+      value.currentTime = 0;
+    });
   },
 
   render: function(){
