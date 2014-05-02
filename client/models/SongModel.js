@@ -10,7 +10,9 @@ var SongModel = Backbone.Model.extend({
     this.trigger('play', this);
   },
 
-  enqueue: function(){
+  // this function triggers an 'enqueue' event that bubbles up through the
+  // library collection, to be heard by the app model
+  enqueue: function(){  // the view invokes enqueue
     this.trigger('enqueue', this);
   },
 
@@ -19,9 +21,10 @@ var SongModel = Backbone.Model.extend({
   },
 
   ended: function(){
+    // increments play count and triggers 'ended' event
     var plays = this.get('playCount');
     this.set('playCount', +this.get('playCount') + 1);
-    this.trigger('ended', this);
+    this.dequeue(); // uses the function defined above
   },
 
 });
